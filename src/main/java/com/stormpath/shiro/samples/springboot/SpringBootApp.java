@@ -24,6 +24,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * mvn spring-boot:run
+ * https://dzone.com/articles/protecting-a-spring-boot-app-with-apache-shiro
+ */
 @ControllerAdvice
 @SpringBootApplication
 public class SpringBootApp {
@@ -73,6 +77,7 @@ public class SpringBootApp {
     public ShiroFilterChainDefinition shiroFilterChainDefinition() {
         DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
         // use permissive to NOT require authentication, our controller Annotations will decide that
+        //chainDefinition.addPathDefinition("/troopers/**", "authcBasic, rest[troopers]");
         chainDefinition.addPathDefinition("/**", "authcBasic[permissive]");
         return chainDefinition;
     }
